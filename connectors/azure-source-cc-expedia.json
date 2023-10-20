@@ -1,0 +1,17 @@
+{
+  "name": "expedia",
+  "config" : {
+    "connector.class" : "io.confluent.connect.azure.blob.storage.AzureBlobStorageSourceConnector",
+    "format.class" : "io.confluent.connect.azure.blob.storage.format.avro.AvroFormat",
+    "confluent.topic.bootstrap.servers" : "kafka:9092",
+    "confluent.topic.replication.factor" : "3",
+    "tasks.max" : "1",
+    "azblob.account.name" : "<ACCOUNT_NAME>",
+    "azblob.container.name" : "<CONTAINER_NAME>",
+    "azblob.account.key": "<ACCOUNT_KEY>",
+    "transforms": "DateTimeMask",
+    "transforms.DateTimeMask.type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.DateTimeMask.fields": "date_time",
+    "transforms.DateTimeMask.replacement": "0000-00-00 00:00:00"
+  }
+}
